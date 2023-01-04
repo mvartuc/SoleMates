@@ -6,6 +6,7 @@ namespace SoleMates.Interfaces
     {
         Task<IEnumerable<Club>> GetAllAsync();
         Task<Club> GetByIdAsync(int id);
+        Task<Club> GetByIdNoTrackingAsync(int id);
         Task<IEnumerable<Club>> GetClubByCityAsync(string city);
         bool Add(Club club);
         bool Update(Club club);

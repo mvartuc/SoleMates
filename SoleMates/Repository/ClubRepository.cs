@@ -34,6 +34,10 @@ namespace SoleMates.Repository
         {
             return await _context.Clubs.Include(i => i.Address).FirstOrDefaultAsync(i => i.Id == id);
         }
+        public async Task<Club> GetByIdNoTrackingAsync(int id)
+        {
+            return await _context.Clubs.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+        }
 
         public async Task<IEnumerable<Club>> GetClubByCityAsync(string city)
         {
