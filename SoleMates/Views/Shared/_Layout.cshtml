@@ -7,9 +7,55 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SoleMates.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.css">
+    <link rel="stylesheet" href="~/css/templatemo-training-studio.css">
 </head>
 <body>
-    <header>
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a class="logo" asp-area="" asp-controller="Home" asp-action="Index">Sole<em> Mates</em></a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class=""><a class="active" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class=""><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                            <li class=""><a asp-area="" asp-controller="Club" asp-action="Index">Clubs</a></li>
+                            <li class=""><a asp-area="" asp-controller="Race" asp-action="Index">Races</a></li>
+                            <li class=""><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                            <li class="main-button"><a asp-area="" asp-controller="AppUser" asp-action="Register">Sign Up</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    @*<header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SoleMates</a>
@@ -29,21 +75,40 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    </header>*@
 
-    <footer class="border-top footer text-muted">
+
+
+    <main role="main" class="">
+        @RenderBody()
+    </main>
+
+
+    <footer class="footer text-muted">
         <div class="container">
             &copy; 2023 - SoleMates - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JQuery -->
+    <script src="~/lib/jquery/dist/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="~/lib/bootstrap/dist/js/popper.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="~/js/scrollreveal.min.js"></script>
+    <script src="~/js/waypoints.min.js"></script>
+    <script src="~/js/jquery.counterup.min.js"></script>
+    <script src="~/js/imgfix.min.js"></script>
+    <script src="~/js/mixitup.js"></script>
+    <script src="~/js/accordions.js"></script>
+
+    <!-- Global Init -->
+    <script src="~/js/custom.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
