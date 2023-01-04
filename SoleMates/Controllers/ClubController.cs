@@ -3,16 +3,19 @@ using Microsoft.EntityFrameworkCore;
 using SoleMates.Data;
 using SoleMates.Interfaces;
 using SoleMates.Models;
+using SoleMates.ViewModels;
 
 namespace SoleMates.Controllers
 {
     public class ClubController : Controller
     {
         private readonly IClubRepository _clubRepository;
+        private readonly IPhotoService _photoService;
 
-        public ClubController(IClubRepository clubRepository)
+        public ClubController(IClubRepository clubRepository, IPhotoService photoService)
         {
             this._clubRepository = clubRepository;
+            this._photoService = photoService;
         }
         public async Task<IActionResult> Index()
         {
@@ -30,14 +33,31 @@ namespace SoleMates.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Club club)
+        public async Task<IActionResult> Create(CreateClubViewModel clubViewModel)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(club);
+                var result = await _photoService.AddPhotoAsync(clubViewModel.Image);
+                var club = new Club
+                {
+                    Title = clubViewModel.Title,
+                    Description = clubViewModel.Description,
+                    Image = result.Url.ToString(),
+                    Address = new Address
+                    {
+                        Street = clubViewModel.Address.Street,
+                        City = clubViewModel.Address.City,
+                        State= clubViewModel.Address.State
+                    }
+                };
+                _clubRepository.Add(club);
+                return RedirectToAction("Index");
             }
-            _clubRepository.Add(club);
-            return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Photo Upload Failed");
+                return View(clubViewModel);
+            }
         }
     }
 }

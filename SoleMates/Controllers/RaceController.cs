@@ -2,16 +2,20 @@
 using SoleMates.Interfaces;
 using SoleMates.Models;
 using SoleMates.Repository;
+using SoleMates.Services;
+using SoleMates.ViewModels;
 
 namespace SoleMates.Controllers
 {
     public class RaceController : Controller
     {
         private readonly IRaceRepository _raceRepository;
+        private readonly IPhotoService _photoService;
 
-        public RaceController(IRaceRepository raceRepository)
+        public RaceController(IRaceRepository raceRepository, IPhotoService photoService)
         {
             this._raceRepository = raceRepository;
+            this._photoService = photoService;
         }
         public async Task<IActionResult> Index()
         {
@@ -29,14 +33,31 @@ namespace SoleMates.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Race race)
+        public async Task<IActionResult> Create(CreateRaceViewModel raceViewModel)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(race);
+                var result = await _photoService.AddPhotoAsync(raceViewModel.Image);
+                var race = new Race
+                {
+                    Title = raceViewModel.Title,
+                    Description = raceViewModel.Description,
+                    Image = result.Url.ToString(),
+                    Address = new Address
+                    {
+                        Street = raceViewModel.Address.Street,
+                        City = raceViewModel.Address.City,
+                        State = raceViewModel.Address.State
+                    }
+                };
+                _raceRepository.Add(race);
+                return RedirectToAction("Index");
             }
-            _raceRepository.Add(race);
-            return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Photo Upload Failed");
+                return View(raceViewModel);
+            }
         }
     }
 }
