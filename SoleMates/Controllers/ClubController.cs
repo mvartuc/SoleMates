@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoleMates.Data;
+using SoleMates.Models;
 
 namespace SoleMates.Controllers
 {
@@ -13,7 +14,7 @@ namespace SoleMates.Controllers
         }
         public IActionResult Index()
         {
-            var clubs = _context.Clubs.ToList();
+            List<Club> clubs = _context.Clubs.ToList();
             return View(clubs);
         }
     }
