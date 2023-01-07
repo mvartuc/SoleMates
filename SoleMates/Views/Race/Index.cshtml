@@ -12,7 +12,9 @@
             {
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" src="@race.Image" width="100%" height="225">
+                        <a type="button" asp-controller="Race" asp-action="Detail" asp-route-runningRace="@race.Title" asp-route-id="@race.Id">
+                            <img class="card-img-top" src="@race.Image" width="100%" height="225">
+                        </a>
                         <div class="card-body">
                             <p class="card-text">@race.Title</p>
                             <p class="card-text">@race.Description</p>
