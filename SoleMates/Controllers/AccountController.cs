@@ -88,11 +88,12 @@ namespace SoleMates.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
+
+        //[HttpPost]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Race");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
