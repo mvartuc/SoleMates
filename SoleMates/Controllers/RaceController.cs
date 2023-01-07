@@ -58,6 +58,8 @@ namespace SoleMates.Controllers
                     }
                 };
                 _raceRepository.Add(race);
+                if (User.IsInRole("admin"))
+                    return RedirectToAction("Races", "Admin");
                 return RedirectToAction("Index");
             }
             else
@@ -118,6 +120,8 @@ namespace SoleMates.Controllers
                 };
 
                 _raceRepository.Update(race);
+                if (User.IsInRole("admin"))
+                    return RedirectToAction("Clubs", "Admin");
                 return RedirectToAction("Index");
             }
             else
@@ -140,6 +144,8 @@ namespace SoleMates.Controllers
             if (raceDetails == null) return View("Error");
 
             _raceRepository.Delete(raceDetails);
+            if (User.IsInRole("admin"))
+                return RedirectToAction("Clubs", "Admin");
             return RedirectToAction("Index");
         }
 

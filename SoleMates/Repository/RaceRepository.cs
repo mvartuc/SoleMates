@@ -38,11 +38,11 @@ namespace SoleMates.Repository
 
         public async Task<Race> GetByIdAsync(int id)
         {
-            return await _context.Races.Include(i => i.Address).FirstOrDefaultAsync(i => i.Id == id);
+            return await _context.Races.Include(i => i.Address).Include(u => u.AppUser).FirstOrDefaultAsync(i => i.Id == id);
         }
         public async Task<Race> GetByIdNoTrackingAsync(int id)
         {
-            return await _context.Races.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+            return await _context.Races.Include(i => i.Address).Include(u => u.AppUser).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public bool Save()

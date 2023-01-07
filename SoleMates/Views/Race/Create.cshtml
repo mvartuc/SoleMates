@@ -28,7 +28,7 @@
                                         <span asp-validation-for="Title" class="text-danger"></span>
                                     </div>
                                     <div class="col">
-                                        <select asp-for="RaceCategory" asp-items="@Html.GetEnumSelectList<RaceCategory>()" class="form-control form-control-lg">
+                                        <select asp-for="RaceCategory" asp-items="@Html.GetEnumSelectList<RaceCategory>()" class="form-control form-control-lg custom-select-lg aria-label="select a category">
                                             <option>--Select--</option>
                                         </select>
                                         <span asp-validation-for="RaceCategory" class="text-danger"></span>
@@ -57,8 +57,9 @@
                                     </div>
                                 </div>
                                 <div class="form-row form-group">
-                                    <div class="col">
-                                        <input asp-for="Image" type="file" class="form-control form-control-lg" placeholder="Image" />
+                                    <div class="col custom-file">
+                                        <input asp-for="Image" type="file" class="form-control form-control-lg custom-file-input" />
+                                        <label asp-for="Image" class="custom-file-label">Choose File</label>
                                         <span asp-validation-for="Image" class="text-danger"></span>
                                     </div>
                                 </div>
