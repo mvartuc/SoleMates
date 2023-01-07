@@ -11,11 +11,12 @@ namespace SoleMates.Controllers
     {
         private readonly IRaceRepository _raceRepository;
         private readonly IPhotoService _photoService;
-
-        public RaceController(IRaceRepository raceRepository, IPhotoService photoService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public RaceController(IRaceRepository raceRepository, IPhotoService photoService, IHttpContextAccessor httpContextAccessor)
         {
             this._raceRepository = raceRepository;
             this._photoService = photoService;
+            this._httpContextAccessor = httpContextAccessor;
         }
         public async Task<IActionResult> Index()
         {
@@ -29,7 +30,12 @@ namespace SoleMates.Controllers
         }
         public IActionResult Create()
         {
-            return View();
+            var currentUserId = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var createRaceViewModel = new CreateRaceViewModel
+            {
+                AppUserId = currentUserId
+            };
+            return View(createRaceViewModel);
         }
 
         [HttpPost]
@@ -43,6 +49,7 @@ namespace SoleMates.Controllers
                     Title = raceViewModel.Title,
                     Description = raceViewModel.Description,
                     Image = result.Url.ToString(),
+                    AppUserId = raceViewModel.AppUserId,
                     Address = new Address
                     {
                         Street = raceViewModel.Address.Street,
@@ -66,6 +73,7 @@ namespace SoleMates.Controllers
             if (race == null) return View("Error");
             var raceViewModel = new EditRaceViewModel
             {
+                AppUserId = race.AppUserId,
                 Title = race.Title,
                 Description = race.Description,
                 AddressId = race.AddressId,
@@ -105,7 +113,8 @@ namespace SoleMates.Controllers
                     Description = raceViewModel.Description,
                     Image = photoResult.Url.ToString(),
                     AddressId = raceViewModel.AddressId,
-                    Address = raceViewModel.Address
+                    Address = raceViewModel.Address,
+                    AppUserId = raceViewModel.AppUserId
                 };
 
                 _raceRepository.Update(race);

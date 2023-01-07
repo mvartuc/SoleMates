@@ -11,11 +11,13 @@ namespace SoleMates.Controllers
     {
         private readonly IClubRepository _clubRepository;
         private readonly IPhotoService _photoService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ClubController(IClubRepository clubRepository, IPhotoService photoService)
+        public ClubController(IClubRepository clubRepository, IPhotoService photoService, IHttpContextAccessor httpContextAccessor)
         {
             this._clubRepository = clubRepository;
             this._photoService = photoService;
+            this._httpContextAccessor = httpContextAccessor;
         }
         public async Task<IActionResult> Index()
         {
@@ -29,7 +31,12 @@ namespace SoleMates.Controllers
         }
         public IActionResult Create()
         {
-            return View();
+            var currentUserId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var createClubViewModel = new CreateClubViewModel
+            {
+                AppUserId = currentUserId
+            };
+            return View(createClubViewModel);
         }
 
         [HttpPost]
@@ -43,6 +50,7 @@ namespace SoleMates.Controllers
                     Title = clubViewModel.Title,
                     Description = clubViewModel.Description,
                     Image = result.Url.ToString(),
+                    AppUserId = clubViewModel.AppUserId,
                     Address = new Address
                     {
                         Street = clubViewModel.Address.Street,
@@ -65,6 +73,7 @@ namespace SoleMates.Controllers
             if (club == null) return View("Error");
             var clubViewModel = new EditClubViewModel
             {
+                AppUserId = club.AppUserId,
                 Title = club.Title,
                 Description = club.Description,
                 AddressId = club.AddressId,
@@ -104,7 +113,8 @@ namespace SoleMates.Controllers
                     Description = clubViewModel.Description,
                     Image = photoResult.Url.ToString(),
                     AddressId = clubViewModel.AddressId,
-                    Address = clubViewModel.Address
+                    Address = clubViewModel.Address,
+                    AppUserId = clubViewModel.AppUserId
                 };
 
                 _clubRepository.Update(club);

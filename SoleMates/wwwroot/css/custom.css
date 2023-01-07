@@ -38,3 +38,13 @@ input[id="registerLocation"]::placeholder {
     background: #ffffff;
     list-style-type: none;
 }
+
+.greenButton {
+    background-color: #02B875;
+    border-color: whitesmoke;
+}
+
+    .greenButton:hover {
+        background-color: #000000;
+        border-color: whitesmoke;
+    }
