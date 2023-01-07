@@ -1,0 +1,77 @@
+﻿@model IEnumerable<AppUser>
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">User Table</h3>
+    </div>
+
+    <div class="card-body">
+        @*<table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach(var user in Model)
+        {
+        <tr data-widget="expandable-table" aria-expanded="false">
+        <td>user.Email</td>
+        <td>11-7-2014</td>
+        <td>Approved</td>
+        </tr>
+        }
+        <tr data-widget="expandable-table" aria-expanded="false">
+        <td>John Doe</td>
+        <td>11-7-2014</td>
+        <td>Approved</td>
+        </tr>
+        <tr class="expandable-body d-none">
+        <td colspan="5">
+        <p style="display: none;">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        </td>
+        </tr>
+        </tbody>
+        </table>*@
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.Count(); i++)
+                {
+                    var user = Model.ElementAt(i);
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td>@user.Id</td>
+                        <td>@user.NormalizedUserName</td>
+                        <td>@user.Email</td>
+                        @*<td>@user.Address?.ToString()</td>*@
+                        <td class="text-center">
+                            <a asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.Id" class="btn btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
