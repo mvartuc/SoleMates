@@ -12,8 +12,8 @@ using SoleMates.Data;
 namespace SoleMates.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230107082026_Identity")]
-    partial class Identity
+    [Migration("20230107095509_AppUserDoesntNeedAnAddress")]
+    partial class AppUserDoesntNeedAnAddress
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -191,7 +191,7 @@ namespace SoleMates.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -390,9 +390,7 @@ namespace SoleMates.Migrations
                 {
                     b.HasOne("SoleMates.Models.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AddressId");
 
                     b.Navigation("Address");
                 });
