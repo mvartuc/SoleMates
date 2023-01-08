@@ -40,25 +40,14 @@
                         </div>
                         <div>
                             <ul class="list-inline text-small d-inline-block mb-3">
-                                <li class="list-inline-item"><i class="icon-thumbs-up"></i> 214</li>
-                                <li class="list-inline-item"><i class="icon-message"></i> 6</li>
-                            </ul>
+                                <li class="list-inline-item"><i class="icon-calendar"></i> @Model.DateCreated?.Date.ToShortDateString()</li>
+@*                                <li class="list-inline-item"><i class="icon-time-slot"></i> 6:00</li>
+*@                            </ul>
                         </div>
                     </div>
                     <div>
                         <div class="btn-group mb-2">
-                            <button type="button" class="btn btn-success btn-lg">Join Race</button>
-                            <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split dropdown-toggle-no-arrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="icon-dots-three-horizontal"></i>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-sm">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
+                            <a href="mailto:@Model.AppUser?.Email" type="button" class="btn btn-success greenButton btn-lg">Contact Owner</a>
                         </div>
                     </div>
                 </div>
@@ -77,69 +66,62 @@
                     <article>
                         @Model.Description
                     </article>
-                    <hr>
+                    @*
                     <h5 class="mb-4">Discussion</h5>
                     <div class="card">
-                        <div class="card-header bg-secondary d-flex justify-content-between">
-                            <button class="btn btn-secondary" type="button" data-target="#comment-reply" data-toggle="collapse" aria-expanded="false" aria-controls="comment-reply">Post a reply</button>
-                            <form class="d-flex align-items-center">
-                                <span class="mr-2 text-muted text-small text-nowrap">Sort by:</span>
-                                <select class="custom-select">
-                                    <option value="alpha">Alphabetical</option>
-                                    <option value="old-new" selected>Newest</option>
-                                    <option value="new-old">Popular</option>
-                                    <option value="recent">Recently Updated</option>
-                                </select>
-                            </form>
-                        </div>
-                        <div class="collapse" id="comment-reply">
-                            <form class="card-body">
-                                <div class="form-group">
-                                    <textarea class="form-control from-control-lg" id="comment-reply-text" name="comment-reply" rows="4" placeholder="Type your reply here"></textarea>
-                                </div>
-                                <div class="mb-2">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" name="notify-reply" id="check-notify">
-                                        <label class="custom-control-label text-small" for="check-notify">Notify me when someone replies</label>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <button type="submit" class="btn btn-success mr-3">Submit reply</button>
-                                    <a href="#comment-reply" class="text-small text-muted" data-toggle="collapse" aria-expanded="true" aria-controls="comment-reply">Cancel</a>
-                                </div>
-                            </form>
-                        </div>
-                        <ul class="list-group list-group-flush list-group-comments">
-                        </ul>
+                    <div class="card-header bg-secondary d-flex justify-content-between">
+                    <button class="btn btn-secondary" type="button" data-target="#comment-reply" data-toggle="collapse" aria-expanded="false" aria-controls="comment-reply">Post a reply</button>
+                    <form class="d-flex align-items-center">
+                    <span class="mr-2 text-muted text-small text-nowrap">Sort by:</span>
+                    <select class="custom-select">
+                    <option value="alpha">Alphabetical</option>
+                    <option value="old-new" selected>Newest</option>
+                    <option value="new-old">Popular</option>
+                    <option value="recent">Recently Updated</option>
+                    </select>
+                    </form>
                     </div>
+                    <div class="collapse" id="comment-reply">
+                    <form class="card-body">
+                    <div class="form-group">
+                    <textarea class="form-control from-control-lg" id="comment-reply-text" name="comment-reply" rows="4" placeholder="Type your reply here"></textarea>
+                    </div>
+                    <div class="mb-2">
+                    <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="notify-reply" id="check-notify">
+                    <label class="custom-control-label text-small" for="check-notify">Notify me when someone replies</label>
+                    </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                    <button type="submit" class="btn btn-success mr-3">Submit reply</button>
+                    <a href="#comment-reply" class="text-small text-muted" data-toggle="collapse" aria-expanded="true" aria-controls="comment-reply">Cancel</a>
+                    </div>
+                    </form>
+                    </div>
+                    <ul class="list-group list-group-flush list-group-comments">
+                    </ul>*@
                 </div>
-                <!--end of col-->
                 <div class="col-12 col-md-4">
                     <!-- end card -->
                     <div class="card">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <div class="d-flex justify-content-between">
-                                    <div><i class="icon-text-document mr-1"></i> Created</div>
-                                    <span>17/11/2017</span>
+                                    <div>
+                                        <i class="icon-users mr-1"></i> Owner
+                                    </div>
+                                    <span>@Model.AppUser?.UserName</span>
+                                </div>
+                            <li class="list-group-item">
+                                <div class="d-flex justify-content-between">
+                                    <div><i class="icon-calendar mr-1"></i> Created</div>
+                                    <span>@Model.DateCreated?.ToString("dd-MM-yyyy HH:mm")</span>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="d-flex justify-content-between">
-                                    <div><i class="icon-edit mr-1"></i> Last updated</div>
-                                    <span>23/12/2017</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="d-flex justify-content-between">
-                                    <div><i class="icon-thumbs-up mr-1"></i> Owner</div>
-                                    <span>214</span>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="d-flex justify-content-between">
-                                    <div><i class="icon-share mr-1"></i> Shares</div>
-                                    <span>52</span>
+                                    <div><i class="icon-calendar mr-1"></i> Last updated</div>
+                                    <span>@Model.DateModified?.ToString("dd-MM-yyyy HH:mm")</span>
                                 </div>
                             </li>
                         </ul>
@@ -147,9 +129,11 @@
                     <!-- end card -->
                 </div>
                 <!--end of col-->
+                <hr>
             </div>
-            <!--end of row-->
+            <!--end of col-->
         </div>
-        <!--end of container-->
+        <!--end of row-->
+<!--end of container-->
     </section>
 </div>
