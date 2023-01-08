@@ -2,6 +2,8 @@
 
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 
 @{
     var currentUser = await UserManager.GetUserAsync(User);
@@ -17,8 +19,9 @@
     <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/entypo.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/socicon.css" asp-append-version="true" />
-@*    <link rel="stylesheet" href="~/SoleMates.styles.css" asp-append-version="true" />
-*@    <script src="https://kit.fontawesome.com/8aa18c8793.js" crossorigin="anonymous"></script>
+    @*    <link rel="stylesheet" href="~/SoleMates.styles.css" asp-append-version="true" />
+    *@
+    <script src="https://kit.fontawesome.com/8aa18c8793.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="navbar-container">
@@ -32,7 +35,7 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@localizer["home"]</a>
                             </li>
                             @*                            @if (SignInManager.IsSignedIn(User))
                             {
@@ -41,13 +44,13 @@
                             </li>
                             *@
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Club" asp-action="Index">Find Clubs</a>
+                                <a class="nav-link" asp-area="" asp-controller="Club" asp-action="Index">@localizer["find_clubs"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Race" asp-action="Index">Find Races</a>
+                                <a class="nav-link" asp-area="" asp-controller="Race" asp-action="Index">@localizer["find_races"]</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/blog" class="nav-link">Blog</a>
+                                <partial name="_Culture"></partial>
                             </li>
                         </ul>
                         @if (SignInManager.IsSignedIn(User))
@@ -55,36 +58,36 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle p-lg-0" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-@*                                        @if (!string.IsNullOrEmpty(currentUser.Im))
-                                        {
-                                            <img alt="Image" src="@currentUser.ProfileImageUrl" class="avatar avatar-xs">
-                                        }
-                                        else
-                                        {
-                                            <img alt="Image" src="/img/avatar-male-4.jpg" class="avatar avatar-xs">
-                                        }*@
+                                        @*                                        @if (!string.IsNullOrEmpty(currentUser.Im))
+                                    {
+                                    <img alt="Image" src="@currentUser.ProfileImageUrl" class="avatar avatar-xs">
+                                    }
+                                    else
+                                    {
+                                    <img alt="Image" src="/img/avatar-male-4.jpg" class="avatar avatar-xs">
+                                    }*@
                                         <img alt="Image" src="/img/person-circle.svg" class="avatar avatar-xs">
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                                         @*<a class="dropdown-item" asp-controller="User" asp-action="Detail" asp-route-id="@currentUser.Id">
-                                            <span class="h6 mb-0">View Profile</span>
-                                        </a>
+                                    <span class="h6 mb-0">View Profile</span>
+                                    </a>
 
-                                        <a class="dropdown-item" asp-controller="User" asp-action="EditProfile">
-                                            <span class="h6 mb-0">Edit Profile</span>
-                                        </a>
-*@
+                                    <a class="dropdown-item" asp-controller="User" asp-action="EditProfile">
+                                    <span class="h6 mb-0">Edit Profile</span>
+                                    </a>
+                                    *@
                                         <a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Create">
-                                            <span class="h6 mb-0">Create Club</span>
+                                            <span class="h6 mb-0">@localizer["create_club"]</span>
                                         </a>
                                         <a class="dropdown-item" asp-area="" asp-controller="Race" asp-action="Create">
-                                            <span class="h6 mb-0">Create Race</span>
+                                            <span class="h6 mb-0">@localizer["create_race"]</span>
                                         </a>
                                         <a class="dropdown-item" asp-area="" asp-controller="Dashboard" asp-action="Index">
-                                            <span class="h6 mb-0">Dashboard</span>
+                                            <span class="h6 mb-0">@localizer["dashboard"]</span>
                                         </a>
                                         <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">
-                                            <span su class="h6 mb-0">Logout</span>
+                                            <span su class="h6 mb-0">@localizer["logout"]</span>
                                         </a>
                                     </div>
                                 </li>
@@ -94,9 +97,9 @@
                         {
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a asp-area="" asp-controller="Account" asp-action="Register">Sign up</a>
-                                    <span>&nbsp;or&nbsp;</span>
-                                    <a asp-area="" asp-controller="Account" asp-action="Login">Sign in</a>
+                                    <a asp-area="" asp-controller="Account" asp-action="Register">@localizer["register"]</a>
+                                    <span>&nbsp;@localizer["or"]&nbsp;</span>
+                                    <a asp-area="" asp-controller="Account" asp-action="Login">@localizer["login"]</a>
                                 </li>
                             </ul>
                         }
@@ -127,47 +130,47 @@
                 </div>
                 <!--end of col-->
                 <div class="col-12 col-md-9">
-                    <span class="h5">The world's first online platform for runners</span>
+                    <span class="h5">@localizer["footer_text"]</span> @*The world's first online platform for runners*@
                     <div class="row no-gutters">
                         <div class="col-6 col-lg-3">
-                            <h6>Navigate</h6>
+                            <h6>@localizer["navigate"]</h6>
                             <ul class="list-unstyled">
                                 <li>
                                     <a asp-area="" asp-controller="Home"
-                                       asp-action="Index">Home</a>
+                                       asp-action="Index">@localizer["home"]</a>
                                 </li>
                                 <li>
                                     <a asp-area="" asp-controller="Club"
-                                       asp-action="Index">Find Running Clubs Near You</a>
+                                       asp-action="Index">@localizer["find_clubs_near"]</a>
                                 </li>
                                 <li>
                                     <a asp-area="" asp-controller="Race"
-                                       asp-action="Index">Find Running Races Near You</a>
+                                       asp-action="Index">@localizer["find_races_near"]</a>
                                 </li>
                             </ul>
                         </div>
                         <!--end of col-->
-@*                        <div class="col-6 col-lg-3">
-                            <h6>Club Directory</h6>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a asp-area="" asp-controller="Club"
-                                       asp-action="Index">Find Running Clubs</a>
-                                </li>
-                            </ul>
+                        @*                        <div class="col-6 col-lg-3">
+                        <h6>Club Directory</h6>
+                        <ul class="list-unstyled">
+                        <li>
+                        <a asp-area="" asp-controller="Club"
+                        asp-action="Index">Find Running Clubs</a>
+                        </li>
+                        </ul>
                         </div>
                         <!--end of col-->
                         <div class="col-6 col-lg-3">
-                            <h6>Race Directory</h6>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a asp-controller="Race" asp-action="Index">Find Running Races</a>
-                                </li>
-                            </ul>
+                        <h6>Race Directory</h6>
+                        <ul class="list-unstyled">
+                        <li>
+                        <a asp-controller="Race" asp-action="Index">Find Running Races</a>
+                        </li>
+                        </ul>
                         </div>*@
                         <!--end of col-->
                         <div class="col-6 col-lg-3">
-                            <h6>Social</h6>
+                            <h6>@localizer["social"]</h6>
                             <ul class="list-unstyled">
                                 <li>
                                     <a href="https://www.instagram.com/mvartuc/" target="_blank">Instagram</a>

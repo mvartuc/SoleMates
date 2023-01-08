@@ -4,14 +4,14 @@ namespace SoleMates.ViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Email is required!")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Enter a valid e-mail!")]
-        [Display(Name = "Email Address")]
+        [Required()]
+        [DataType(DataType.EmailAddress)]
+        [Display()]
         public string EmailAddress { get; set; }
 
-        [Required(ErrorMessage = "Password is required!")]
+        [Required()]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display()]
         public string Password { get; set; }
     }
 }

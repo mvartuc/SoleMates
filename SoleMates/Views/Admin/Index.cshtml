@@ -1,13 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+    ViewData["Title"] = localizer["index"];
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 
-
 <div class="text-center">
 
-<h4 class="display-4">Welcome to your Admin Panel!</h4>
+<h4 class="display-4">@localizer["welcome"]</h4>
 </div>
 
 @*        <div class="row">

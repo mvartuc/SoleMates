@@ -1,12 +1,13 @@
-﻿@model IEnumerable<AppUser>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model IEnumerable<AppUser>
 @{
-    ViewData["Title"] = "Users";
+    ViewData["Title"] = localizer["users"];
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">User Table</h3>
+        <h3 class="card-title">@localizer["users_table"]</h3>
     </div>
 
     <div class="card-body">

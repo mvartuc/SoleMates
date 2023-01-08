@@ -1,12 +1,13 @@
 ﻿@model IEnumerable<Club>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
-    ViewData["Title"] = "Clubs";
+    ViewData["Title"] = localizer["clubs"];
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Clubs View</h3>
+        <h3 class="card-title">@localizer["clubs_view"]</h3>
     </div>
 
     <div class="card-body">
@@ -22,11 +23,11 @@
                                 <p class="card-text">@club.Description</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a asp-controller="Club" asp-action="Detail" asp-route-id="@club.Id" type="button" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a asp-controller="Club" asp-action="Detail" asp-route-id="@club.Id" type="button" class="btn btn-sm btn-outline-secondary">@localizer["view"]</a>
                                         @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                                         {
-                                            <a asp-controller="Club" asp-action="Edit" asp-route-id="@club.Id" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                            <a asp-controller="Club" asp-action="Delete" asp-route-id="@club.Id" type="button" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                            <a asp-controller="Club" asp-action="Edit" asp-route-id="@club.Id" type="button" class="btn btn-sm btn-outline-secondary">@localizer["edit"]</a>
+                                            <a asp-controller="Club" asp-action="Delete" asp-route-id="@club.Id" type="button" class="btn btn-sm btn-outline-secondary">@localizer["delete"]</a>
                                         }
                                     </div>
                                     <small class="text-muted">@club.ClubCategory</small>

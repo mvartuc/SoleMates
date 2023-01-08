@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Home";
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+    ViewData["Title"] = localizer["PageTitle"];
 }
 
 <section class="bg-dark space-lg" data-jarallax data-speed="0.2">
@@ -7,9 +8,9 @@
     <div class="container">
         <div class="row align-items-center justify-content-between">
             <div class="col-12 col-md-6 col-lg-5 section-intro">
-                <h1 class="display-3">Find a running group</h1>
+                <h1 class="display-3">@localizer["IndexHeader1"]</h1>
                 <span class="lead">
-                    A community of devoted runners, passionate about running and life. Ready to find your accountability partner?
+                    @localizer["IndexHeader2"]
                 </span>
             </div>
             <!--end of col-->
@@ -49,7 +50,7 @@
                             </label>
                             </div>
                             </div>*@
-                            <a asp-controller="Account" asp-action="Register" type="button" class="btn btn-lg btn-success btn-block">Sign up for SoleMates</a>
+                            <a asp-controller="Account" asp-action="Register" type="button" class="btn btn-lg btn-success btn-block">@localizer["SignUp"]</a>
                         </form>
                     </div>
                 </div>

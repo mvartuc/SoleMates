@@ -1,18 +1,19 @@
-﻿@using SoleMates.ViewModels
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@using SoleMates.ViewModels
 @model LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = localizer["login"];
 }
 <div class="row">
     <div class="col-md-6 offset-3">
         <p>
-            <h4>Log in to your account</h4>
+            <h4>@localizer["login_msg"]</h4>
         </p>
         @if (TempData["Error"] != null)
         {
             <div class="col-md-12 alert alert-danger">
-                <span><b>Sorry!</b> - @TempData["Error"]</span>
+                <span><b>@localizer["sorry"]!</b> - @TempData["Error"]</span>
             </div>
         }
         <div class="row">
@@ -20,18 +21,18 @@
                 <form asp-action="Login">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="EmailAddress" class="control-label"></label>
+                        <label asp-for="EmailAddress" class="control-label">@localizer["email_address"]</label>
                         <input asp-for="EmailAddress" class="form-control">
                         <span asp-validation-for="EmailAddress" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
+                        <label asp-for="Password" class="control-label">@localizer["password"]</label>
                         <input asp-for="Password" class="form-control" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input class="btn btn-outline-success float right" type="submit" value="Log in" />
-                        <a class="btn btn-outline-secondary" asp-controller="Club" asp-action="Index">Cancel</a>
+                        <input class="btn btn-outline-success float right" type="submit" value=@localizer["login"] />
+                        <a class="btn btn-outline-secondary" asp-controller="Club" asp-action="Index">@localizer["cancel"]</a>
                     </div>
                 </form>
             </div>

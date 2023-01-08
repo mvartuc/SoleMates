@@ -1,20 +1,21 @@
-﻿@using SoleMates.ViewModels
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@using SoleMates.ViewModels
 @model RegisterViewModel
 
 @{
-    ViewData["Title"] = "Sign up";
+    ViewData["Title"] = localizer["signup"];
 }
 
 <div class="row">
     <div class="col-md-6 offset-3">
         <p>
-            <h4>Sign up for a new account</h4>
+            <h4>@localizer["signup_today"]</h4>
         </p>
 
         @if (TempData["Error"] != null)
         {
             <div class="col-md-12 alert alert-danger">
-                <span><b>Sorry!</b> - @TempData["Error"] </span>
+                <span><b>@localizer["sorry"]!</b> - @TempData["Error"] </span>
             </div>
         }
 
@@ -24,24 +25,24 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group">
-                        <label asp-for="EmailAddress" class="control-label"></label>
+                        <label asp-for="EmailAddress" class="control-label">@localizer["email_address"]</label>
                         <input asp-for="EmailAddress" class="form-control" />
                         <span asp-validation-for="EmailAddress" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
+                        <label asp-for="Password" class="control-label">@localizer["password"]</label>
                         <input asp-for="Password" class="form-control" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <label asp-for="ConfirmPassword" class="control-label">@localizer["confirm_password"]</label>
                         <input asp-for="ConfirmPassword" class="form-control" />
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <input class="btn btn-outline-success float-right" type="submit" value="Sign up" />
-                        <a class="btn btn-outline-secondary" asp-controller="Race" asp-action="Index">Cancel</a>
+                        <input class="btn btn-outline-success float-right" type="submit" value="@localizer["signup"]" />
+                        <a class="btn btn-outline-secondary" asp-controller="Race" asp-action="Index">@localizer["cancel"]</a>
                     </div>
                 </form>
             </div>

@@ -1,5 +1,7 @@
-﻿@model Club
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model Club
 @{
+    ViewData["Title"] = localizer["detail_club"];
 }
 
 <div class="main-container">
@@ -9,17 +11,17 @@
                 <div class="col">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Home</a>
+                            <a asp-controller="Home" asp-action="Index">@localizer["home"]</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="pages-app.html">Find</a>
+                            <a href="#">@localizer["find"]</a>
                         </li>
 
-                        <li class="breadcrumb-item active" aria-current="page">Runnings Clubs in @Model.Address.City, @Model.Address.State</li>
+                        <li class="breadcrumb-item active" aria-current="page">@localizer["clubs_in"] @Model.Address.City, @Model.Address.State</li>
                     </ol>
                 </div>
                 <!--end of col-->
-            </div>
+            </div> 
             <!--end of row-->
         </div>
         <!--end of container-->
@@ -48,7 +50,7 @@
                     </div>
                     <div>
                         <div class="btn-group mb-2">
-                            <a href="mailto:@Model.AppUser?.Email" type="button" class="btn btn-success greenButton btn-lg">Contact Owner</a>
+                            <a href="mailto:@Model.AppUser?.Email" type="button" class="btn btn-success greenButton btn-lg">@localizer["contact"]</a>
                         </div>
                     </div>
                 </div>
@@ -109,19 +111,19 @@
                             <li class="list-group-item">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <i class="icon-users mr-1"></i> Owner
+                                        <i class="icon-users mr-1"></i> @localizer["owner"]
                                     </div>
                                     <span>@Model.AppUser?.UserName</span>
                                 </div>
                             <li class="list-group-item">
                                 <div class="d-flex justify-content-between">
-                                    <div><i class="icon-calendar mr-1"></i> Created</div>
+                                    <div><i class="icon-calendar mr-1"></i> @localizer["created"]</div>
                                     <span>@Model.DateCreated?.ToString("dd-MM-yyyy HH:mm")</span>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="d-flex justify-content-between">
-                                    <div><i class="icon-calendar mr-1"></i> Last updated</div>
+                                    <div><i class="icon-calendar mr-1"></i> @localizer["last_updated"]</div>
                                     <span>@Model.DateModified?.ToString("dd-MM-yyyy HH:mm")</span>
                                 </div>
                             </li>

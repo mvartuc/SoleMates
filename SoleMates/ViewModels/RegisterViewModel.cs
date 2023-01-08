@@ -4,20 +4,20 @@ namespace SoleMates.ViewModels
 {
     public class RegisterViewModel
     {
-        [Display(Name = "Email Address")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Enter a valid e-mail!")]
-        [Required(ErrorMessage = "Email is required!")]
+        //[Display(Name = "Email Address")]
+        [DataType(DataType.EmailAddress)]
+        [Required()]
         public string EmailAddress { get; set; }
 
-        [Display(Name = "Password")]
-        [DataType(DataType.Password, ErrorMessage = "Password must have at least 3 characters")]
-        [Required(ErrorMessage = "Password is required!")]
+        //[Display(Name = "Password")]
+        [DataType(DataType.Password)]
+        [Required()]
         public string Password { get; set; }
 
-        [Display(Name = "Confirm Password")]
-        [DataType(DataType.Password, ErrorMessage = "Password must have at least 3 characters")]
-        [Required(ErrorMessage = "Confirm Password is required!")]
-        [Compare("Password", ErrorMessage = "Passwords do not match!")]
+        //[Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
+        [Required()]
+        [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
     }

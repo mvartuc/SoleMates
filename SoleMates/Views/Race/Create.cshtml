@@ -1,8 +1,9 @@
-﻿@using SoleMates.Data.Enum;
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@using SoleMates.Data.Enum;
 @using SoleMates.ViewModels;
 @model CreateRaceViewModel
 @{
-    ViewData["Title"] = "Create a Race";
+    ViewData["Title"] = localizer["create_race"];
 }
 
 <div class="main-container">
@@ -15,8 +16,8 @@
             <div class="row flex-md-row card card-md">
                 <div class="card-body bg-secondary">
                     <div class="text-center mb-5">
-                        <h1 class="h2 mb-2">Create your own running club</h1>
-                        <span>Bring together runners in your community</span>
+                        <h1 class="h2 mb-2">@localizer["create_own_race"]</h1>
+                        <span>@localizer["race_community"]</span>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-6 col-lg-5">
@@ -24,48 +25,48 @@
                                 <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId" />
                                 <div class="form-row form-group">
                                     <div class="col">
-                                        <input asp-for="Title" class="form-control form-control-lg" placeholder="Title" />
+                                        <input asp-for="Title" class="form-control form-control-lg" placeholder="@localizer["title"]" />
                                         <span asp-validation-for="Title" class="text-danger"></span>
                                     </div>
                                     <div class="col">
                                         <select asp-for="RaceCategory" asp-items="@Html.GetEnumSelectList<RaceCategory>()" class="form-control form-control-lg custom-select-lg aria-label="select a category">
-                                            <option>--Select--</option>
+                                            <option>--@localizer["select"]--</option>
                                         </select>
                                         <span asp-validation-for="RaceCategory" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-row form-group">
                                     <div class="col">
-                                        <input asp-for="Description" class="form-control form-control-lg" placeholder="Description" />
+                                        <input asp-for="Description" class="form-control form-control-lg" placeholder="@localizer["description"]" />
                                         <span asp-validation-for="Description" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-row form-group">
                                     <div class="col">
-                                        <input asp-for="Address.Street" class="form-control form-control-lg" placeholder="Street" />
+                                        <input asp-for="Address.Street" class="form-control form-control-lg" placeholder="@localizer["street"]" />
                                         <span asp-validation-for="Address.Street" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-row form-group">
                                     <div class="col">
-                                        <input asp-for="Address.City" class="form-control form-control-lg" placeholder="City" />
+                                        <input asp-for="Address.City" class="form-control form-control-lg" placeholder="@localizer["city"]" />
                                         <span asp-validation-for="Address.City" class="text-danger"></span>
                                     </div>
                                     <div class="col">
-                                        <input asp-for="Address.State" class="form-control form-control-lg" placeholder="State" />
+                                        <input asp-for="Address.State" class="form-control form-control-lg" placeholder="@localizer["state"]" />
                                         <span asp-validation-for="Address.State" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-row form-group">
                                     <div class="col custom-file">
                                         <input asp-for="Image" type="file" class="form-control form-control-lg custom-file-input" />
-                                        <label asp-for="Image" class="custom-file-label">Choose File</label>
+                                        <label asp-for="Image" class="custom-file-label">@localizer["choose_file"]</label>
                                         <span asp-validation-for="Image" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-row form-group">
                                     <div class="col">
-                                        <button class="btn btn-block btn-success btn-lg" type="submit">Create Race</button>
+                                        <button class="btn btn-block btn-success btn-lg" type="submit">@localizer["create_race"]</button>
                                     </div>
                                 </div>
                             </form>

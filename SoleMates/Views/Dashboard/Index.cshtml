@@ -1,18 +1,22 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@using Microsoft.AspNetCore.Identity;
 @using SoleMates.ViewModels;
 @model DashboardViewModel
 @inject SignInManager<AppUser> SignInManager
+@{
+    ViewData["Title"] = localizer["dashboard"];
+}
 
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">
-            <h1 class="display-4 fw-normal">User Dashboard</h1>
-            <a type="button" class="btn btn-primary greenButton" asp-area="" asp-controller="Club" asp-action="Create">Create Club</a>
-            <a type="button" class="btn btn-primary greenButton" asp-area="" asp-controller="Race" asp-action="Create">Create Race</a>
-            <a type="button" class="btn btn-primary greenButton" asp-area="" asp-controller="Dashboard" asp-action="EditUserProfile">Edit User Profile</a>
-        </div>
+            <h1 class="display-4 fw-normal">@localizer["dashboard"]</h1>
+            <a type="button" class="btn btn-primary greenButton" asp-area="" asp-controller="Club" asp-action="Create">@localizer["create_club"]</a>
+            <a type="button" class="btn btn-primary greenButton" asp-area="" asp-controller="Race" asp-action="Create">@localizer["create_race"]</a>
+@*            <a type="button" class="btn btn-primary greenButton" asp-area="" asp-controller="Dashboard" asp-action="EditUserProfile">Edit User Profile</a>
+*@        </div>
        
-        <h2 class="display-4 fw-normal text-center">Your Races</h2>
+        <h2 class="display-4 fw-normal text-center">@localizer["your_races"]</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
             @foreach (var item in Model.Races)
@@ -26,11 +30,11 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a type="btn btn-success" asp-controller="Club" asp-action="Detail" asp-route-id="@item.Id"
-                                   class="btn btn-sm btn-outline-secondary">View</a>
+                                   class="btn btn-sm btn-outline-secondary">@localizer["view"]</a>
                                     @if (SignInManager.IsSignedIn(User))
                                     {
-                                        <a asp-controller="Race" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                        <a asp-controller="Race" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                        <a asp-controller="Race" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">@localizer["edit"]</a>
+                                        <a asp-controller="Race" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">@localizer["delete"]</a>
                                     }
                                 </div>
                                 <small class="text-muted">@item.RaceCategory</small>
@@ -40,7 +44,7 @@
                 </div>
             }
         </div>
-        <h2 class="display-4 fw-normal text-center">Your Clubs</h2>
+        <h2 class="display-4 fw-normal text-center">@localizer["your_races"]</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             @foreach (var item in Model.Clubs)
             {
@@ -53,11 +57,11 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a type="btn btn-success" asp-controller="Club" asp-action="Detail" asp-route-id="@item.Id"
-                                   class="btn btn-sm btn-outline-secondary">View</a>
+                                   class="btn btn-sm btn-outline-secondary">@localizer["view"]</a>
                                     @if (SignInManager.IsSignedIn(User))
                                     {
-                                        <a asp-controller="Club" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                        <a asp-controller="Club" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                        <a asp-controller="Club" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">@localizer["edit"]</a>
+                                        <a asp-controller="Club" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">@localizer["delete"]</a>
                                     }
                                 </div>
                                 <small class="text-muted">@item.ClubCategory</small>

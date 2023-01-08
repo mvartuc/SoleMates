@@ -1,16 +1,17 @@
-﻿@model IEnumerable<Race>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model IEnumerable<Race>
 @{
-    ViewData["Title"] = "Races";
+    ViewData["Title"] = localizer["races"];
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Races View</h3>
+        <h3 class="card-title">@localizer["races_view"]</h3>
     </div>
 
     <div class="card-body">
-        <div class="album py-5 bg-light">
+        <div class="album py-5 bg-light">   
             <div class="row">
                 @foreach (var race in Model)
                 {
@@ -22,11 +23,11 @@
                                 <p class="card-text">@race.Description</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a asp-controller="Race" asp-action="Detail" asp-route-id="@race.Id" type="button" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a asp-controller="Race" asp-action="Detail" asp-route-id="@race.Id" type="button" class="btn btn-sm btn-outline-secondary">@localizer["view"]</a>
                                         @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                                         {
-                                            <a asp-controller="Race" asp-action="Edit" asp-route-id="@race.Id" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                            <a asp-controller="Race" asp-action="Delete" asp-route-id="@race.Id" type="button" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                            <a asp-controller="Race" asp-action="Edit" asp-route-id="@race.Id" type="button" class="btn btn-sm btn-outline-secondary">@localizer["edit"]</a>
+                                            <a asp-controller="Race" asp-action="Delete" asp-route-id="@race.Id" type="button" class="btn btn-sm btn-outline-secondary">@localizer["delete"]</a>
                                         }
                                     </div>
                                     <small class="text-muted">@race.RaceCategory</small>
