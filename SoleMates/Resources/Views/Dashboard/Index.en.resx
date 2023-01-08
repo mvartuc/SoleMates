@@ -222,4 +222,10 @@
   <data name="view" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="your_clubs" xml:space="preserve">
+    <value>Your Clubs</value>
+  </data>
+  <data name="your_races" xml:space="preserve">
+    <value>Your Races</value>
+  </data>
 </root>
