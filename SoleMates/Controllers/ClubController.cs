@@ -29,6 +29,7 @@ namespace SoleMates.Controllers
             Club club = await _clubRepository.GetByIdAsync(id);
             return View(club);
         }
+
         public IActionResult Create()
         {
             var currentUserId = _httpContextAccessor.HttpContext.User.GetUserId();
@@ -116,7 +117,8 @@ namespace SoleMates.Controllers
                     Image = photoResult.Url.ToString(),
                     AddressId = clubViewModel.AddressId,
                     Address = clubViewModel.Address,
-                    AppUserId = clubViewModel.AppUserId
+                    AppUserId = clubViewModel.AppUserId,
+                    DateCreated = userClub.DateCreated
                 };
 
                 _clubRepository.Update(club);

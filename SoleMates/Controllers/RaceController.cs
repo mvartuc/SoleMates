@@ -116,12 +116,13 @@ namespace SoleMates.Controllers
                     Image = photoResult.Url.ToString(),
                     AddressId = raceViewModel.AddressId,
                     Address = raceViewModel.Address,
-                    AppUserId = raceViewModel.AppUserId
+                    AppUserId = raceViewModel.AppUserId,
+                    DateCreated = userRace.DateCreated
                 };
 
                 _raceRepository.Update(race);
                 if (User.IsInRole("admin"))
-                    return RedirectToAction("Clubs", "Admin");
+                    return RedirectToAction("Races", "Admin");
                 return RedirectToAction("Index");
             }
             else
@@ -145,7 +146,7 @@ namespace SoleMates.Controllers
 
             _raceRepository.Delete(raceDetails);
             if (User.IsInRole("admin"))
-                return RedirectToAction("Clubs", "Admin");
+                return RedirectToAction("Races", "Admin");
             return RedirectToAction("Index");
         }
 
