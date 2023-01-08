@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/entypo.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/socicon.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SoleMates.styles.css" asp-append-version="true" />
-    <script src="https://kit.fontawesome.com/8aa18c8793.js" crossorigin="anonymous"></script>
+@*    <link rel="stylesheet" href="~/SoleMates.styles.css" asp-append-version="true" />
+*@    <script src="https://kit.fontawesome.com/8aa18c8793.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="navbar-container">
@@ -66,14 +66,14 @@
                                         <img alt="Image" src="/img/person-circle.svg" class="avatar avatar-xs">
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                                        <a class="dropdown-item" asp-controller="User" asp-action="Detail" asp-route-id="@currentUser.Id">
+                                        @*<a class="dropdown-item" asp-controller="User" asp-action="Detail" asp-route-id="@currentUser.Id">
                                             <span class="h6 mb-0">View Profile</span>
                                         </a>
 
                                         <a class="dropdown-item" asp-controller="User" asp-action="EditProfile">
                                             <span class="h6 mb-0">Edit Profile</span>
                                         </a>
-
+*@
                                         <a class="dropdown-item" asp-area="" asp-controller="Club" asp-action="Create">
                                             <span class="h6 mb-0">Create Club</span>
                                         </a>
@@ -109,7 +109,7 @@
         </div>
     </div>
     <div class="main-container">
-        <main role="main" class="pb-3">
+        <main role="main" class="">
             @RenderBody()
         </main>
     </div>
@@ -137,10 +137,6 @@
                                        asp-action="Index">Home</a>
                                 </li>
                                 <li>
-                                    <a asp-area="" asp-controller="Users"
-                                       asp-action="Index">Find Runners Near You</a>
-                                </li>
-                                <li>
                                     <a asp-area="" asp-controller="Club"
                                        asp-action="Index">Find Running Clubs Near You</a>
                                 </li>
@@ -151,16 +147,12 @@
                             </ul>
                         </div>
                         <!--end of col-->
-                        <div class="col-6 col-lg-3">
+@*                        <div class="col-6 col-lg-3">
                             <h6>Club Directory</h6>
                             <ul class="list-unstyled">
                                 <li>
                                     <a asp-area="" asp-controller="Club"
-                                       asp-action="RunningClubsByStateDirectory">Find Running Clubs By State</a>
-                                </li>
-                                <li>
-                                    <a asp-area="" asp-controller="Club"
-                                       asp-action="RunningClubsByStateForCityDirectory">Find Running Clubs By City</a>
+                                       asp-action="Index">Find Running Clubs</a>
                                 </li>
                             </ul>
                         </div>
@@ -169,28 +161,16 @@
                             <h6>Race Directory</h6>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="#">Find Running Races By City</a>
-                                </li>
-                                <li>
-                                    <a href="#">Find Running Races By State</a>
+                                    <a asp-controller="Race" asp-action="Index">Find Running Races</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>*@
                         <!--end of col-->
                         <div class="col-6 col-lg-3">
                             <h6>Social</h6>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="https://www.youtube.com/channel/UCU_Pr6r85LeSe62S65BLV2g">Youtube</a>
-                                </li>
-                                <li>
-                                    <a href="https://www.facebook.com/RunGroop-101353239237822">Facebook</a>
-                                </li>
-                                <li>
-                                    <a href="https://twitter.com/rungroop">Twitter</a>
-                                </li>
-                                <li>
-                                    <a href="/blog">Blog</a>
+                                    <a href="https://www.instagram.com/mvartuc/" target="_blank">Instagram</a>
                                 </li>
                             </ul>
                         </div>

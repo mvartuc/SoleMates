@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/alt/adminlte.plugins.css">
 </head>
 <body class="sidebar-mini layout-fixed layout-navbar-fixed" style="height: auto;">
-    <nav class="main-header navbar navbar-expand navbar-light"></nav>
-    <div class="wrapper">
+@*    <nav class="main-header navbar navbar-expand navbar-light"></nav>
+*@    <div class="wrapper">
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="index3.html" class="brand-link text-center">
+            <a asp-controller="Admin" asp-action="Index" class="brand-link text-center">
                 <span class="brand-text font-weight-light">SoleMates</span>
             </a>
 
@@ -34,7 +34,7 @@
                         <li class="nav-item menu-open">
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a asp-controller="Admin" asp-action="Users" class="nav-link active">
+                                    <a asp-controller="Admin" asp-action="Users" class="nav-link">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-square dashboardIcons" viewBox="0 0 16 16">
                                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                             <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z" />
@@ -63,7 +63,7 @@
                         </li>
                         <li class="nav-item">
                             <a asp-controller="Account" asp-action="Logout" class="nav-link" data-widget="fullscreen" role="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-left dashboardIcons" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left dashboardIcons" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
                                     <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
                                 </svg>
@@ -78,7 +78,7 @@
 
         </aside>
 
-        <div class="content-wrapper" style="min-height: 600px;">
+        <div class="content-wrapper mt-0 pt-4" style="min-height: 600px;">
             <div class="content">
                 @*                <div class="content-header">
                 <div class="container-fluid">
@@ -104,20 +104,26 @@
 
         <footer class="main-footer">
 
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
-            </div>
-
-            <strong>Copyright © 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong>Copyright © 2000-2023 MVA Software.</strong> All rights reserved.
         </footer>
     </div>
 
 
 
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-    <script src="plugins/jquery/jquery.min.js"></script>
-
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var url = window.location;
+            $('.nav-item .nav-link').find('.active').removeClass('active');
+            $('.nav-item .nav-link').each(function () {
+                if (this.href == url) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
