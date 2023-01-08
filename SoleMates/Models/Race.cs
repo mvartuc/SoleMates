@@ -1,10 +1,11 @@
 ﻿using SoleMates.Data.Enum;
+using SoleMates.Helpers;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoleMates.Models
 {
-    public class Race
+    public class Race : BaseEntity
     {
         [Key]
         public int Id { get; set; }

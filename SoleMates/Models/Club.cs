@@ -1,10 +1,11 @@
 ﻿using SoleMates.Data.Enum;
+using SoleMates.Helpers;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoleMates.Models
 {
-    public class Club
+    public class Club : BaseEntity
     {
         [Key]
         public int Id { get; set; }

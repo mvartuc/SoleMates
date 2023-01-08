@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SoleMates.Helpers;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,5 +15,6 @@ namespace SoleMates.Models
         public Address? Address { get; set; }
         public ICollection<Club> Clubs { get; set; }
         public ICollection<Race> Races { get; set; }
+        public DateTime? DateCreated { get; set; }
     }
 }
