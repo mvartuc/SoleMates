@@ -52,6 +52,7 @@ namespace SoleMates.Controllers
                     Description = clubViewModel.Description,
                     Image = result.Url.ToString(),
                     AppUserId = clubViewModel.AppUserId,
+                    ClubCategory = clubViewModel.ClubCategory,
                     Address = new Address
                     {
                         Street = clubViewModel.Address.Street,
@@ -117,6 +118,7 @@ namespace SoleMates.Controllers
                     Image = photoResult.Url.ToString(),
                     AddressId = clubViewModel.AddressId,
                     Address = clubViewModel.Address,
+                    ClubCategory = clubViewModel.ClubCategory,
                     AppUserId = clubViewModel.AppUserId,
                     DateCreated = userClub.DateCreated
                 };

@@ -150,6 +150,9 @@
   <data name="create_club" xml:space="preserve">
     <value>Create Club</value>
   </data>
+  <data name="create_race" xml:space="preserve">
+    <value>Create Race</value>
+  </data>
   <data name="dashboard" xml:space="preserve">
     <value>User Dashboard</value>
   </data>

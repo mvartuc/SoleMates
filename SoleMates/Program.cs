@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using SoleMates.Data;
 using SoleMates.Helpers;
 using SoleMates.Interfaces;
@@ -38,7 +39,9 @@ builder.Services.Configure<RequestLocalizationOptions>(
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    //options.UseInMemoryDatabase("SoleMates");
 });
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddIdentity<AppUser, IdentityRole>(o =>
 {
     // configure identity options
@@ -72,6 +75,102 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+//https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-7.0&tabs=visual-studio
+
+app.MapGet("api/clubs", (ApplicationDbContext context) =>
+{
+    return Results.Ok(context.Clubs.
+    Include(i => i.Address).
+    Include(i => i.AppUser).
+    Select(r => new
+    {
+        Id = r.Id,
+        Title = r.Title,
+        Description = r.Description,
+        ImageUrl = r.Image,
+        Street = r.Address.Street,
+        City = r.Address.City,
+        Category = r.ClubCategory,
+        CreatorId = r.AppUser.Id,
+        CreatedBy = r.AppUser.UserName,
+        CreationDate = r.DateCreated,
+        LastModificationDate = r.DateModified
+    }));
+});
+
+app.MapGet("api/clubs/{city}", (string city, ApplicationDbContext context) =>
+{
+    var clubs = context.Clubs
+        .Include(i => i.Address)
+        .Include(i => i.AppUser)
+        .Where(c => c.Address.City == city);
+    if (clubs.Any())
+    {
+        return Results.Ok(clubs.Select(r => new
+        {
+            Id = r.Id,
+            Title = r.Title,
+            Description = r.Description,
+            ImageUrl = r.Image,
+            Street = r.Address.Street,
+            City = r.Address.City,
+            Category = r.ClubCategory,
+            CreatorId = r.AppUser.Id,
+            CreatedBy = r.AppUser.UserName,
+            CreationDate = r.DateCreated,
+            LastModificationDate = r.DateModified
+        }));
+    }
+    return Results.NotFound();
+});
+
+app.MapGet("api/races", (ApplicationDbContext context) =>
+{
+    return Results.Ok(context.Races.
+    Include(i => i.Address).
+    Include(i => i.AppUser).
+    Select(r => new
+    {
+        Id = r.Id,
+        Title = r.Title,
+        Description = r.Description,
+        ImageUrl = r.Image,
+        Street = r.Address.Street,
+        City = r.Address.City,
+        Category = r.RaceCategory,
+        CreatorId = r.AppUser.Id,
+        CreatedBy = r.AppUser.UserName,
+        CreationDate = r.DateCreated,
+        LastModificationDate = r.DateModified
+    }));
+});
+
+app.MapGet("api/races/{city}", (string city, ApplicationDbContext context) =>
+{
+    var races = context.Races
+        .Include(i => i.Address)
+        .Include(i => i.AppUser)
+        .Where(c => c.Address.City == city);
+    if (races.Any())
+    {
+        return Results.Ok(races.Select(r => new
+        {
+            Id = r.Id,
+            Title = r.Title,
+            Description = r.Description,
+            ImageUrl = r.Image,
+            Street = r.Address.Street,
+            City = r.Address.City,
+            Category = r.RaceCategory,
+            CreatorId = r.AppUser.Id,
+            CreatedBy = r.AppUser.UserName,
+            CreationDate = r.DateCreated,
+            LastModificationDate = r.DateModified
+        }));
+    }
+    return Results.NotFound();
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

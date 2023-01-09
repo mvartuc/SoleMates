@@ -50,6 +50,7 @@ namespace SoleMates.Controllers
                     Description = raceViewModel.Description,
                     Image = result.Url.ToString(),
                     AppUserId = raceViewModel.AppUserId,
+                    RaceCategory = raceViewModel.RaceCategory,
                     Address = new Address
                     {
                         Street = raceViewModel.Address.Street,
@@ -116,6 +117,7 @@ namespace SoleMates.Controllers
                     Image = photoResult.Url.ToString(),
                     AddressId = raceViewModel.AddressId,
                     Address = raceViewModel.Address,
+                    RaceCategory = raceViewModel.RaceCategory,
                     AppUserId = raceViewModel.AppUserId,
                     DateCreated = userRace.DateCreated
                 };
