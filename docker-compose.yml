@@ -6,6 +6,6 @@ services:
     ports:
       - "8080:80"
     environment:
-      - Cloudinary:CloudName:
-      - Cloudinary:ApiKey:
-      - Cloudinary:ApiSecret:
+      - "Cloudinary:CloudName":
+      - "Cloudinary:ApiKey":
+      - "Cloudinary:ApiSecret":
