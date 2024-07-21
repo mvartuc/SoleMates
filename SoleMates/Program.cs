@@ -23,7 +23,6 @@ builder.Services.AddScoped<IRaceRepository, RaceRepository>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
-Console.WriteLine(builder.Configuration.GetDebugView());
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.Configure<RequestLocalizationOptions>(
     opt =>
