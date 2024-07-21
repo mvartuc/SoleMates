@@ -7,3 +7,6 @@
         public string ApiSecret { get; set; }
     }
 }
+
+// generate a json entry for this class
+// CloudinarySettings { "CloudName": "string", "ApiKey": "string", "ApiSecret": "string" }

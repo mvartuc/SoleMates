@@ -23,6 +23,7 @@ builder.Services.AddScoped<IRaceRepository, RaceRepository>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
+Console.WriteLine(builder.Configuration.GetDebugView());
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.Configure<RequestLocalizationOptions>(
     opt =>
@@ -38,7 +39,7 @@ builder.Services.Configure<RequestLocalizationOptions>(
     });
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
     //options.UseInMemoryDatabase("SoleMates");
 });
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -60,12 +61,14 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
 builder.Services.AddMvc()
     .AddMvcLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
+
+
 var app = builder.Build();
 
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     await Seed.SeedUsersAndRolesAsync(app);
-    //Seed.SeedData(app);
+    Seed.SeedData(app);
 }
 
 // Configure the HTTP request pipeline.
@@ -180,7 +183,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-var options = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions >> ();
+var options = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>();
 
 app.UseRequestLocalization(options.Value);
 

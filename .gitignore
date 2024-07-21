@@ -638,3 +638,5 @@ __pycache__/
 # tools/
 
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore
+SoleMates/.DS_Store
+SoleMates/.env
