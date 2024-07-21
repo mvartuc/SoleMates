@@ -8,24 +8,16 @@ RUN  apt-get update \
     && apt-get install -y wget \
     && rm -rf /var/lib/apt/lists/*
 
-ARG Cloudinary:CloudName
-ARG Cloudinary:ApiKey
-ARG Cloudinary:ApiSecret
-
-ENV Cloudinary:CloudName=${Cloudinary:CloudName}
-ENV Cloudinary:ApiKey=${Cloudinary:ApiKey}
-ENV Cloudinary:ApiSecret=${Cloudinary:ApiSecret}
-
 # Copy the database folder to the container
-COPY ./SoleMates/Database/ /app/database/
+COPY ./Database/ /app/database/
 
 # Use the SDK image to build the app
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ./SoleMates/SoleMates.csproj ./
+COPY ./SoleMates.csproj ./
 RUN dotnet restore "SoleMates.csproj"
 COPY . .
-WORKDIR "/src/SoleMates"
+WORKDIR "/src/"
 RUN dotnet build "SoleMates.csproj" -c Release -o /app/build
 
 

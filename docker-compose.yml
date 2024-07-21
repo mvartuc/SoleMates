@@ -1,0 +1,11 @@
+services:
+  api:
+    build:
+      context: ./SoleMates
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - Cloudinary:CloudName:
+      - Cloudinary:ApiKey:
+      - Cloudinary:ApiSecret:
