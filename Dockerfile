@@ -12,9 +12,9 @@ ARG Cloudinary:CloudName
 ARG Cloudinary:ApiKey
 ARG Cloudinary:ApiSecret
 
-ENV Cloudinary:CloudName=$Cloudinary:CloudName
-ENV Cloudinary:ApiKey=$Cloudinary:ApiKey
-ENV Cloudinary:ApiSecret=$Cloudinary:ApiSecret
+ENV Cloudinary:CloudName=${Cloudinary:CloudName}
+ENV Cloudinary:ApiKey=${Cloudinary:ApiKey}
+ENV Cloudinary:ApiSecret=${Cloudinary:ApiSecret}
 
 # Copy the database folder to the container
 COPY ./SoleMates/Database/ /app/database/
@@ -36,4 +36,4 @@ RUN dotnet publish "SoleMates.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT [ "dotnet", "SoleMates.dll" ]
+ENTRYPOINT [ "dotnet", "SoleMates.dll"]
