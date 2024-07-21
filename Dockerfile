@@ -3,6 +3,12 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 
+# Install wget for healthchecking
+RUN  apt-get update \
+    && apt-get install -y wget \
+    && rm -rf /var/lib/apt/lists/*
+
+
 # Copy the database folder to the container
 COPY ./SoleMates/Database/ /app/database/
 
