@@ -8,13 +8,13 @@ RUN  apt-get update \
     && apt-get install -y wget \
     && rm -rf /var/lib/apt/lists/*
 
-ARG Cloudinary:CloudName
-ARG Cloudinary:ApiKey
-ARG Cloudinary:ApiSecret
+ARG Cloudinary__CloudName
+ARG Cloudinary__ApiKey
+ARG Cloudinary__ApiSecret
 
-ENV Cloudinary:CloudName=${Cloudinary:CloudName}
-ENV Cloudinary:ApiKey=${Cloudinary:ApiKey}
-ENV Cloudinary:ApiSecret=${Cloudinary:ApiSecret}
+ENV Cloudinary__CloudName=${CLOUDNAME}
+ENV Cloudinary__ApiKey=${APIKEY}
+ENV Cloudinary__ApiSecret=${APISECRET}
 
 # Copy the database folder to the container
 COPY ./SoleMates/Database/ /app/database/
