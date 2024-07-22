@@ -12,9 +12,9 @@ ARG Cloudinary__CloudName
 ARG Cloudinary__ApiKey
 ARG Cloudinary__ApiSecret
 
-ENV Cloudinary__CloudName=${CLOUDNAME}
-ENV Cloudinary__ApiKey=${APIKEY}
-ENV Cloudinary__ApiSecret=${APISECRET}
+ENV Cloudinary__CloudName=$Cloudinary__CloudName
+ENV Cloudinary__ApiKey=$Cloudinary__ApiKey
+ENV Cloudinary__ApiSecret=$Cloudinary__ApiSecret
 
 # Copy the database folder to the container
 COPY ./SoleMates/Database/ /app/database/
